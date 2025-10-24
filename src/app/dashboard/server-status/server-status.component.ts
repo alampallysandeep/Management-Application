@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { afterRender, AfterViewInit, Component, DestroyRef, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-server-status',
@@ -11,7 +12,16 @@ export class ServerStatusComponent implements OnInit,AfterViewInit{
   currentStatus = signal<'online' | 'offline' | 'unknown'>('online');
   private destroyRef = inject(DestroyRef);
 
-  constructor() { }
+  constructor() { 
+    effect((onCleanup)=>{
+      //const interval = setTimeout(() => {
+        console.log(this.currentStatus())
+      //}, 100);
+      // onCleanup(()=>{
+      //   clearTimeout(interval)
+      // })
+    })
+  }
   ngOnInit() {
     console.log('ON INIT')
     const interval = setInterval(() => {

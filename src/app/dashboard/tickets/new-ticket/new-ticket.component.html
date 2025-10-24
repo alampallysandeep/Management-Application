@@ -1,16 +1,16 @@
 <form (ngSubmit)="onSubmit(titleInput.value,requestText.value)" #form>
   <p>
     <app-control label="Title">
-      <input name="title" id="title" #titleInput/>
+      <input name="title" id="title" #titleInput #input/>
     </app-control>
   </p>
   <p>
     <app-control label="Request"> <!--<app-control label="Request" #appControl> here instance of component will store inside app template variable instead of DOM element.-->
-      <textarea name="request" id="request" rows="3" #requestText></textarea>
+      <textarea name="request" id="request" rows="3" #requestText #input></textarea>
     </app-control>
   </p>
   <p>
-    <button appButton>
+    <button appButton #btn>
         Submit 
         <span ngProjectAs="icon">⌲</span>
     </button>
